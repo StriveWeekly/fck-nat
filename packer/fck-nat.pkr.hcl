@@ -71,7 +71,13 @@ source "amazon-ebs" "fck-nat" {
   instance_type           = "${lookup(var.instance_type, var.architecture, "error")}"
   region                  = var.region
   ssh_username            = var.ssh_username
-  temporary_key_pair_type = "ed25519"
+
+  launch_block_device_mappings {
+  device_name           = "/dev/xvda"
+  volume_type           = "gp3"
+  volume_size           = 20
+  delete_on_termination = true
+}
   source_ami_filter {
     filters = {
       virtualization-type = var.virtualization_type
