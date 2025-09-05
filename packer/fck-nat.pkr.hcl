@@ -73,11 +73,11 @@ source "amazon-ebs" "fck-nat" {
   ssh_username            = var.ssh_username
 
   launch_block_device_mappings {
-  device_name           = "/dev/xvda"
-  volume_type           = "gp3"
-  volume_size           = 20
-  delete_on_termination = true
-}
+    device_name           = "/dev/xvda"
+    volume_type           = "gp3"
+    volume_size           = 3
+    delete_on_termination = true
+  }
   source_ami_filter {
     filters = {
       virtualization-type = var.virtualization_type
